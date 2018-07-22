@@ -13,13 +13,18 @@ window.TodoApp = {};
   */
 
   window.TodoApp.createToDo = function(id, title, complete) {
-    console.log("Inside Create");
     // Newly created todo item
+    var todoItem = {
+      id: id,
+      title: title,
+      complete: complete
+    }
+    window.TodoApp.store.push(todoItem);
+    return todoItem;
   };
 
   window.TodoApp.readToDo = function() {
-    console.log("Inside Read");
-    // Give all todo items
+    return TodoApp.store;
   };
 
   window.TodoApp.updateToDo = function(id, title, complete) {
@@ -28,8 +33,13 @@ window.TodoApp = {};
   };
 
   window.TodoApp.deleteToDo = function(id) {
-    console.log("Inside Delete");
     // Nothing
+    // for (var i = 0; i < TodoApp.store.length; i++) {
+    //   if (TodoApp.store[i][key] === value) {
+    //     return TodoApp.store[i];
+    //   }
+    // };
+    // return null;
   };
 
 })()
