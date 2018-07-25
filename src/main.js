@@ -20,7 +20,6 @@ window.TodoApp = {};
       complete: complete
     }
     window.TodoApp.store.push(todoItem);
-    return todoItem;
   };
 
   window.TodoApp.readToDo = function() {
@@ -28,18 +27,20 @@ window.TodoApp = {};
   };
 
   window.TodoApp.updateToDo = function(id, title, complete) {
-    console.log("Inside Update");
-     // Give update todo item
+    //  Give update todo item
   };
 
   window.TodoApp.deleteToDo = function(id) {
-    // Nothing
-    // for (var i = 0; i < TodoApp.store.length; i++) {
-    //   if (TodoApp.store[i][key] === value) {
-    //     return TodoApp.store[i];
-    //   }
-    // };
-    // return null;
+    var targetIndex;
+    for (var i = 0; i < TodoApp.store.length; i++) {
+      if (TodoApp.store[i].id === id) {
+        targetIndex = i;
+        break;
+      }
+    };
+    if (targetIndex > -1) {
+      TodoApp.store.splice(targetIndex, 1);
+    }
   };
 
 })()
