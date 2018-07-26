@@ -27,7 +27,19 @@ window.TodoApp = {};
   };
 
   window.TodoApp.updateToDo = function(id, title, complete) {
-    //  Give update todo item
+    var targetIndex;
+    for (var i = 0; i < TodoApp.store.length; i++) {
+      if (TodoApp.store[i].id === id) {
+        targetIndex = i;
+        break;
+      }
+    };
+    if (targetIndex > -1) {
+        TodoApp.store[targetIndex].title = title;
+        TodoApp.store[targetIndex].complete = complete;
+    } else {
+      console.log("Item does not exist");
+    }
   };
 
   window.TodoApp.deleteToDo = function(id) {
