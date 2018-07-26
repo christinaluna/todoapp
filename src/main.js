@@ -3,17 +3,7 @@ window.TodoApp = {};
 (function () {
   window.TodoApp.store = [];
 
-  /*
-    Sample Todo Item
-    {
-      id: 12345,
-      title: "Title here",
-      complete: false
-    }
-  */
-
   window.TodoApp.createToDo = function(id, title, complete) {
-    // Newly created todo item
     var todoItem = {
       id: id,
       title: title,
@@ -22,8 +12,21 @@ window.TodoApp = {};
     window.TodoApp.store.push(todoItem);
   };
 
-  window.TodoApp.readToDo = function() {
-    return TodoApp.store;
+  window.TodoApp.readToDo = function(id) {
+    var targetIndex;
+    if (!id) {
+      return TodoApp.store;
+    } else {
+      for (var i = 0; i < TodoApp.store.length; i++) {
+        if (TodoApp.store[i].id === id) {
+          targetIndex = i;
+          break;
+        }
+      }
+      if (targetIndex > -1) {
+        return TodoApp.store[targetIndex];
+      }
+    }
   };
 
   window.TodoApp.updateToDo = function(id, title, complete) {
@@ -37,8 +40,6 @@ window.TodoApp = {};
     if (targetIndex > -1) {
         TodoApp.store[targetIndex].title = title;
         TodoApp.store[targetIndex].complete = complete;
-    } else {
-      console.log("Item does not exist");
     }
   };
 
