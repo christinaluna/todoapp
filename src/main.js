@@ -12,6 +12,22 @@ window.TodoApp = {};
     window.TodoApp.store.push(todoItem);
   };
 
+  window.TodoApp.displayToDo = function() {
+    var todoList = document.getElementById('todo-list');
+    var todoElement = document.createElement('ul');
+
+    if (window.TodoApp.store == "" || window.TodoApp.store.length == 0) {
+      return false;
+    }
+
+    for (var i = 0; i < TodoApp.store.length; i++) {
+      todoList.appendChild(todoElement);
+      var todoListItem = document.createElement('li');
+      todoListItem.innerText = TodoApp.store[i].title;
+      todoElement.appendChild(todoListItem);
+    }
+  }
+
   window.TodoApp.readToDo = function(id) {
     var targetIndex;
     if (!id) {
