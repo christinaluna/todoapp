@@ -1,75 +1,96 @@
 window.TodoApp = {};
 
 (function () {
-  window.TodoApp.store = [];
+  var render = {};
 
-  window.TodoApp.createToDo = function(id, title, complete) {
+  render.displayToDo = function() {
+    var todoList = document.getElementById('todo-list');
+    var todoElement = document.createElement('ul');
+    var todoListItem;
+    todoList.innerHTML = "";
+
+    if (data.store == "" || data.store.length == 0) {
+      return false;
+    }
+
+    for (var i = 0; i < data.store.length; i++) {
+      todoListItem = document.createElement('li');
+      todoListItem.innerText = data.store[i].title;
+      todoElement.appendChild(todoListItem);
+    }
+    todoList.appendChild(todoElement);
+  }
+
+  window.TodoApp.onButtonClick = function(){
+      render.displayToDo();
+  };
+
+  window.TodoApp.render = render;
+
+  var data = {};
+  data.store = [];
+
+  data.createToDo = function(id, title, complete) {
     var todoItem = {
       id: id,
       title: title,
       complete: complete
     }
-    window.TodoApp.store.push(todoItem);
+    data.store.push(todoItem);
   };
 
-  window.TodoApp.displayToDo = function() {
-    var todoList = document.getElementById('todo-list');
-    var todoElement = document.createElement('ul');
-
-    if (window.TodoApp.store == "" || window.TodoApp.store.length == 0) {
-      return false;
-    }
-
-    for (var i = 0; i < TodoApp.store.length; i++) {
-      todoList.appendChild(todoElement);
-      var todoListItem = document.createElement('li');
-      todoListItem.innerText = TodoApp.store[i].title;
-      todoElement.appendChild(todoListItem);
-    }
-  }
-
-  window.TodoApp.readToDo = function(id) {
+  data.readToDo = function(id) {
     var targetIndex;
     if (!id) {
-      return TodoApp.store;
+      return data.store;
     } else {
-      for (var i = 0; i < TodoApp.store.length; i++) {
-        if (TodoApp.store[i].id === id) {
+      for (var i = 0; i < data.store.length; i++) {
+        if (data.store[i].id === id) {
           targetIndex = i;
           break;
         }
       }
       if (targetIndex > -1) {
-        return TodoApp.store[targetIndex];
+        return data.store[targetIndex];
       }
     }
   };
 
-  window.TodoApp.updateToDo = function(id, title, complete) {
+  data.updateToDo = function(id, title, complete) {
     var targetIndex;
-    for (var i = 0; i < TodoApp.store.length; i++) {
-      if (TodoApp.store[i].id === id) {
+    for (var i = 0; i < data.store.length; i++) {
+      if (data.store[i].id === id) {
         targetIndex = i;
         break;
       }
     };
     if (targetIndex > -1) {
-        TodoApp.store[targetIndex].title = title;
-        TodoApp.store[targetIndex].complete = complete;
+        data.store[targetIndex].title = title;
+        data.store[targetIndex].complete = complete;
     }
   };
 
-  window.TodoApp.deleteToDo = function(id) {
+  data.deleteToDo = function(id) {
     var targetIndex;
-    for (var i = 0; i < TodoApp.store.length; i++) {
-      if (TodoApp.store[i].id === id) {
+    for (var i = 0; i < data.store.length; i++) {
+      if (data.store[i].id === id) {
         targetIndex = i;
         break;
       }
     };
     if (targetIndex > -1) {
-      TodoApp.store.splice(targetIndex, 1);
+      data.store.splice(targetIndex, 1);
     }
   };
+
+  window.TodoApp.data = data;
+
+})();
+
+
+(function () {
+  var myButton = document.getElementById('button');
+
+  myButton.addEventListener('click', window.TodoApp.onButtonClick);
 
 })()
