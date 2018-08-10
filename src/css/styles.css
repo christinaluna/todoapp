@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+h1 {
+  font-family: 'Dosis', sans-serif;
+  font-size: 40px;
+  color: rgb(90, 90, 90);
+}
+
+#add-button {
+  color: #fff;
+  background: rgb(97, 212, 215);
+  transition: background .3s;
+  border: 0;
+}
+
+
+#add-button:hover {
+  color: #fff;
+  background: rgb(64, 140, 142);
+  text-decoration: none;
+  transition: background .3s;
+  cursor: pointer;
+}
+
+.delete-button {
+  display: none;
+  float: right;
+  border: 0;
+  color: #E36467;
+  background: transparent;
+}
+
+#todo-list ul {
+  padding: 0;
+  display: block;
+}
+
+#todo-list li {
+  background: rgb(236, 236, 236);
+  transition: background .4s;
+  list-style-type: none;
+  padding: 0;
+  padding: 10px;
+  width: 100%;
+  display: block;
+  margin-bottom: 15px;
+}
+
+#todo-list li:hover {
+  background: rgb(210, 210, 210);
+  transition: background .4s;
+}
+
+#todo-list li:hover .delete-button {
+  display: block;
+}
+
+#error {
+  background-color: rgb(255, 107, 110);
+  color: #ffffff;
+  display: none;
+}
