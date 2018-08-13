@@ -3,8 +3,11 @@ var render = {};
 render.init = function(){
   console.log("Render init");
   var addButton = document.getElementById('add-button');
+  var newTodoInputValue = document.getElementById('new-todo');
 
-  addButton.addEventListener('click', render.onAddButtonClick);
+  addButton.addEventListener('click', render.onTodoSubmit);
+  newTodoInputValue.addEventListener('change', render.onTodoSubmit);
+
 };
 
 render.displayToDo = function(){
@@ -31,9 +34,17 @@ render.displayToDo = function(){
   todoList.appendChild(todoElement);
 };
 
-render.onAddButtonClick = function(){
+render.onTodoSubmit = function(){
   var newTodoInputValue = document.getElementById('new-todo').value;
 
+  // On Button Click
   data.createToDo(123, newTodoInputValue, false);
   render.displayToDo();
+
+  // On Enter
+  event.preventDefault();
+  if (event.keyCode === 13) {
+    data.createToDo(123, newTodoInputValue, false);
+    render.displayToDo();
+  }
 };
