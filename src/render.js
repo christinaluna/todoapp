@@ -2,12 +2,22 @@ var render = {};
 
 render.init = function(){
   console.log("Render init");
-  var addButton = document.getElementById('add-button');
+  var addTodoButton = document.getElementById('add-button');
   var newTodoInputValue = document.getElementById('new-todo');
+  var containerElement = document.getElementsByClassName('container')[0];
 
-  addButton.addEventListener('click', render.onTodoSubmit);
-  newTodoInputValue.addEventListener('change', render.onTodoSubmit);
+  addTodoButton.addEventListener('click', render.onTodoSubmit);
+  newTodoInputValue.addEventListener('keyup', function(ev){
+    if (ev.keyCode === 13) {
+      render.onTodoSubmit();
+    }
+  });
 
+  containerElement.addEventListener('click', function(ev){
+    if (ev.target.tagName === "BUTTON" && ev.target.className.indexOf("delete-button") !== -1 ) {
+      render.deleteToDoItem(ev.target);
+    }
+  });
 };
 
 render.displayToDo = function(){
@@ -26,6 +36,7 @@ render.displayToDo = function(){
     todoListItemDelete = document.createElement('button');
     todoListItemDelete.setAttribute("id", "delete-button");
     todoListItemDelete.setAttribute("class", "delete-button fa  fa-trash");
+    todoListItemDelete.setAttribute("todoid", data.store[i].id);
 
     todoListItem.innerText = data.store[i].title;
     todoElement.appendChild(todoListItem);
@@ -36,15 +47,24 @@ render.displayToDo = function(){
 
 render.onTodoSubmit = function(){
   var newTodoInputValue = document.getElementById('new-todo').value;
+  var emptyInputError = document.getElementById('input-error');
+  newTodoInputValue = newTodoInputValue.trim();
 
-  // On Button Click
-  data.createToDo(123, newTodoInputValue, false);
-  render.displayToDo();
+  if (!newTodoInputValue == "") {
+    emptyInputError.style.display = "none";
 
-  // On Enter
-  event.preventDefault();
-  if (event.keyCode === 13) {
-    data.createToDo(123, newTodoInputValue, false);
+    data.createToDo(Math.floor(Math.random() * 1000), newTodoInputValue, false);
     render.displayToDo();
+
+  } else {
+    emptyInputError.style.display = "block";
   }
+};
+
+render.deleteToDoItem = function(item) {
+  var idStr = item.getAttribute("todoid");
+  var id = parseInt(idStr);
+
+  data.deleteToDo(id);
+  render.displayToDo();
 };
