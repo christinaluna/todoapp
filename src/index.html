@@ -8,22 +8,23 @@
   <body>
     <div class="container">
       <div class="row">
-        <h1 class="pt-3">To Do...</h1>
-        <div class="alert alert-danger w-100" id="input-error">Start typing to add a new task</div>
-        <div class="pt-2 pb-2 w-100 d-flex">
-          <input id="new-todo" class="w-100 p-2 jd-inline-block" placeholder="Add new task"/>
-          <button id="add-button" class="p-3 fas fa-plus"></button>
+        <div class="col-lg-6 offset-lg-3">
+          <!-- <h1 class="pt-3">To Do...</h1> -->
+          <div class="alert alert-danger w-100" id="input-error">Start typing to add a new task</div>
+          <div class="pt-5 pb-2 w-100 d-flex">
+            <input id="new-todo" class="w-100 p-2 jd-inline-block" placeholder="Add new task"/>
+            <button id="add-button" class="p-3 fas fa-plus"></button>
+          </div>
+          <div id="todo-list" class="w-100"></div>
         </div>
-      </div>
-      <div class="row">
-        <div id="todo-list" class="w-100"></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="./data.js"></script>
-    <script src="./render.js"></script>
+    <script src="./renderjq.js"></script>
+    <!-- <script src="./render.js"></script> -->
     <script src="./main.js"></script>
   </body>
 </html>
