@@ -4,7 +4,7 @@ render.init = function(){
   console.log("Render init");
   var addTodoButton = document.getElementById('add-button');
   var newTodoInputValue = document.getElementById('new-todo');
-  var containerElement = document.getElementsByClassName('container')[0];
+  var containerElement = document.getElementById('todo-list-container');
 
   addTodoButton.addEventListener('click', render.onTodoSubmit);
   newTodoInputValue.addEventListener('keyup', function(ev){
@@ -19,8 +19,6 @@ render.init = function(){
     }
   });
 };
-
-var
 
 render.displayToDo = function(){
   var todoList = document.getElementById('todo-list');
@@ -86,17 +84,9 @@ render.deleteToDoItem = function(item) {
   render.displayToDo();
 };
 
-
-// To look into more
 render.addListItemCompleteHandler = function(elem, id, title){
   elem.addEventListener("change", function(ev){
-    console.log("todoid", id);
-    console.log("UI thinks it's", ev.target.checked, ev.target);
     data.updateToDo(id, title, ev.target.checked);
     render.displayToDo();
   });
 }
-
-// HW create render jQuery and use instead of render.js
-// Recreate renderDisplayTodo in jQuery
-// If messing with eventHandlers it's too much
